@@ -1,8 +1,17 @@
 import numpy as np
 import matplotlib as plt
 import cv2 as cv
+import os
 
-cap = cv.VideoCapture(1)
+# Specify the folder to save screenshots
+save_folder = "screenshots"
+os.makedirs(save_folder, exist_ok=True)  # Create the folder if it doesn't exist
+
+# Initialize variables for run number and suffix
+run_number = 1
+suffix = 'A'
+
+cap = cv.VideoCapture(0)
 
 while True: 
     ret, frame = cap.read()
@@ -25,9 +34,26 @@ while True:
     
     cv.imshow('frame', frame)
 
-    if cv.waitKey(1) == ord('q'):
-        break
+    key = cv.waitKey(1)
 
+    if key == ord('q'):  # Quit the program
+        break
+    elif key == ord('s'):  # Save screenshot
+        # Define the filename dynamically
+        filename = f"Run-{run_number}{suffix}.png"
+        filepath = os.path.join(save_folder, filename)
+
+        # Save the image
+        cv.imwrite(filepath, frame)
+        print(f"Screenshot saved: {filepath}")
+    elif key == ord('n'):  # Move to the next run (increment run number)
+        run_number += 1
+        suffix = 'A'  # Reset suffix to 'A'
+        print(f"Moved to Run-{run_number}{suffix}")
+    elif key == ord('a'):  # Change suffix
+        suffix = chr(ord(suffix) + 1)  # Increment suffix alphabetically
+        print(f"Updated to Run-{run_number}{suffix}")
+    
 cap.release()
 cv.destroyAllWindows()
 
