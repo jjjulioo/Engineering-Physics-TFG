@@ -1,12 +1,17 @@
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
 
-# Set your API key
-#openai.api_key = "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"
+# Load .env file
+load_dotenv()
 
-client = OpenAI(
-  api_key="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"
-)
+# Get API key
+api_key = os.getenv("OPENAI_API_KEY")
+
+print(api_key)  # Should print your key
+
+
+client = OpenAI(api_key)
 
 
 completion = client.chat.completions.create(
