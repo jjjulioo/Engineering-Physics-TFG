@@ -17,7 +17,7 @@ gradient_magnitude = cv2.normalize(gradient_magnitude, None, 0, 255, cv2.NORM_MI
 
 # Apply Canny edge detection
 edges = cv2.Canny(gray, 50, 150)
-
+--versi
 # Plot the results
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
