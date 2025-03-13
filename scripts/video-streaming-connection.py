@@ -2,9 +2,10 @@ import numpy as np
 import matplotlib as plt
 import cv2 as cv
 import os
+import time
 
 # Specify the folders to save screenshots
-save_folder_dslr = "screenshoqts/dslr"
+save_folder_dslr = "screenshots/dslr"
 save_folder_webcam = "screenshots/webcam"
 os.makedirs(save_folder_dslr, exist_ok=True)  # Create DSLR folder if it doesn't exist
 os.makedirs(save_folder_webcam, exist_ok=True)  # Create Webcam folder if it doesn't exist
@@ -12,6 +13,8 @@ os.makedirs(save_folder_webcam, exist_ok=True)  # Create Webcam folder if it doe
 # Initialize cameras (0 for webcam, 1 for DSLR if connected via USB)
 webcam = cv.VideoCapture(0)  # Webcam
 canon = cv.VideoCapture(1)   # DSLR Camera
+
+time.sleep(2)
 
 # Counter for DSLR captures
 dslr_run_number = 1  # Run number
